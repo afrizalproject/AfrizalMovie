@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "574632415156",
+    "project_id": "tesuas-6006b",
+    "storage_bucket": "tesuas-6006b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574632415156:android:ef7a0073b3e12152ddace1",
+        "android_client_info": {
+          "package_name": "com.example.tes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574632415156-6np7gkg023k7h45gjbcld9jalobvto7h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfD-rIt04cHtMxYVQnWsmfS5To_k_i-JI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574632415156-6np7gkg023k7h45gjbcld9jalobvto7h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
