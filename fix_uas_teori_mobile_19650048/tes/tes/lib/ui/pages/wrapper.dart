@@ -4,6 +4,7 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseUser firebaseUser = Provider.of<FirebaseUser>(context);
+
     if (firebaseUser == null) {
       if (!(prevPageEvent is GoToSplashPage)) {
         prevPageEvent = GoToSplashPage();
@@ -25,6 +26,11 @@ class Wrapper extends StatelessWidget {
                 ? SignInPage()
                 : (pageState is OnRegistrationPage)
                     ? SignUpPage(pageState.registrationData)
-                    : MainPage());
+                    : (pageState is OnPreferencePage)
+                        ? PreferencePage(pageState.registrationData)
+                        : (pageState is OnAccountConfirmationPage)
+                            ? AccountConfirmationPage(
+                                pageState.registrationData)
+                            : MainPage());
   }
 }

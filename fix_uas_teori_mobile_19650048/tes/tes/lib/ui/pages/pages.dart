@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tes/shared/shared.dart';
+import 'package:tes/ui/widgets/widgets.dart';
 
 part 'main_page.dart';
 part 'sign_in_page.dart';

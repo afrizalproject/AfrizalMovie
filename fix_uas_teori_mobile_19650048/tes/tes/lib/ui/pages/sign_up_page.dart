@@ -136,6 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     TextField(
                         controller: passwordController,
+                        obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -147,6 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     TextField(
                         controller: retypePasswordController,
+                        obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -171,7 +173,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             backgroundColor: Color(0xFFFF5C83),
                             message: "Please fill all the fields",
                           )..show(context);
-                        }else if (passwordController.text !=
+                        } else if (passwordController.text !=
                             retypePasswordController.text) {
                           Flushbar(
                             duration: Duration(milliseconds: 1500),
@@ -179,7 +181,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             backgroundColor: Color(0xFFFF5C83),
                             message: "Mismatch password and confirmed password",
                           )..show(context);
-                        }else if (passwordController.text.length < 6) {
+                        } else if (passwordController.text.length < 6) {
                           Flushbar(
                             duration: Duration(milliseconds: 1500),
                             flushbarPosition: FlushbarPosition.TOP,
@@ -194,15 +196,15 @@ class _SignUpPageState extends State<SignUpPage> {
                             backgroundColor: Color(0xFFFF5C83),
                             message: "Wrong formatted email address",
                           )..show(context);
-                        }else {
+                        } else {
                           widget.registrationData.name = nameController.text;
                           widget.registrationData.email = emailController.text;
                           widget.registrationData.password =
                               passwordController.text;
 
-                          // context
-                          //     .bloc<PageBloc>()
-                          //     .add(GoToPreferencePage(widget.registrationData));
+                          context
+                              .bloc<PageBloc>()
+                              .add(GoToPreferencePage(widget.registrationData));
                         }
                       },
                     )
