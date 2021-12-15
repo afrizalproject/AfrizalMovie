@@ -6,8 +6,7 @@ import 'package:tes/services/services.dart';
 import 'bloc/blocs.dart';
 import 'ui/pages/pages.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() async {
   runApp(MyApp());
 }
 
