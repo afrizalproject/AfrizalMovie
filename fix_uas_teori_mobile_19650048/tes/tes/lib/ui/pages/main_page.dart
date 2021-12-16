@@ -20,23 +20,50 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    //tambah tabbar
     return MaterialApp(
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  decoration: BoxDecoration(color: mainColor),
+                  child: FloatingActionButton(
+                      elevation: 0,
+                      backgroundColor: accentColor2,
+                      child: SizedBox(
+                        height: 26,
+                        width: 26,
+                        child: Icon(
+                          MdiIcons.walletPlus,
+                          color: Colors.black.withOpacity(0.54),
+                        ),
+                      ),
+                      onPressed: () {
+                        context.bloc<UserBloc>().add(SignOut());
+                        AuthServices.signOut();
+                      }),
+                )
+              ],
+            ),
+          ),
           appBar: AppBar(
             backgroundColor: accentColor1,
             bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.movie)),
-                Tab(icon: Icon(Icons.card_membership_rounded)),
+                Tab(icon: Icon(MdiIcons.ticket)),
+                Tab(icon: Icon(MdiIcons.walletPlus)),
               ],
             ),
-            title: const Text('AfrizalMovies'),
+            title: Text('AfrizalMovies'),
           ),
           body: TabBarView(
             children: [
               MoviePage(),
+              Icon(Icons.directions_transit),
               Icon(Icons.directions_transit),
             ],
           ),
@@ -44,7 +71,7 @@ class _MainPageState extends State<MainPage> {
       ),
     );
 
-    //AWAS!!!
+    //AWAS!!! ini navbar
     /* return Scaffold(
         body: Stack(
       children: <Widget>[

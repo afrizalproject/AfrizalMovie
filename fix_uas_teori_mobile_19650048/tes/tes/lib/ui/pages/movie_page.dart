@@ -107,7 +107,7 @@ class MoviePage extends StatelessWidget {
                             fontSize: 14, fontWeight: FontWeight.w400),
                       )
                     ],
-                  )
+                  ),
                 ],
               );
             } else {
@@ -219,7 +219,7 @@ class MoviePage extends StatelessWidget {
         ),
         SizedBox(
           height: 100,
-        )
+        ),
       ],
     );
   }
