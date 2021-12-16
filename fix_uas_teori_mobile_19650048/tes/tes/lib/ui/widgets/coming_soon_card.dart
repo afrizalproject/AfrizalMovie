@@ -8,6 +8,14 @@ class ComingSoonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(movie.title);
+    return Container(
+      height: 160,
+      width: 120,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+              image: NetworkImage(imageBaseUrl + "w500" + movie.posterPath),
+              fit: BoxFit.cover)),
+    );
   }
 }
