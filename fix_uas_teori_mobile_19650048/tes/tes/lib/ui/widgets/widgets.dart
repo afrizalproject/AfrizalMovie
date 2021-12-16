@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:tes/models/models.dart';
 import 'package:tes/shared/shared.dart';
 
 part 'selectable_box.dart';
+part 'movie_card.dart';
+part 'rating_stars.dart';
