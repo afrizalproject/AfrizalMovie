@@ -20,7 +20,32 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: accentColor1,
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.movie)),
+                Tab(icon: Icon(Icons.card_membership_rounded)),
+              ],
+            ),
+            title: const Text('AfrizalMovies'),
+          ),
+          body: TabBarView(
+            children: [
+              MoviePage(),
+              Icon(Icons.directions_transit),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    //AWAS!!!
+    /* return Scaffold(
         body: Stack(
       children: <Widget>[
         Container(
@@ -69,7 +94,7 @@ class _MainPageState extends State<MainPage> {
                   }),
             )),
       ],
-    ));
+    )); */
   }
 
   Widget createCustomBottomNavBar() => Align(

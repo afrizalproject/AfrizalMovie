@@ -5,13 +5,50 @@ class MoviePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
+        // note: BROWSE MOVIE
+        Container(
+          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text(
+            "Browse Movie",
+            style: blackTextFont.copyWith(
+                fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ),
+        BlocBuilder<UserBloc, UserState>(
+          builder: (_, userState) {
+            if (userState is UserLoaded) {
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                      userState.user.selectedGenres.length,
+                      (index) =>
+                          BrowseButton(userState.user.selectedGenres[index])),
+                ),
+              );
+            } else {
+              return SpinKitFadingCircle(
+                color: mainColor,
+                size: 50,
+              );
+            }
+          },
+        ),
+
+        SizedBox(
+          height: 24,
+        ),
         // note: HEADER
         Container(
           decoration: BoxDecoration(
-              color: accentColor1,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20))),
+            color: accentColor1,
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20)),
+          ),
           padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
           child: BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
             if (userState is UserLoaded) {
@@ -124,37 +161,6 @@ class MoviePage extends StatelessWidget {
               }
             },
           ),
-        ),
-
-        // note: BROWSE MOVIE
-        Container(
-          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
-          child: Text(
-            "Browse Movie",
-            style: blackTextFont.copyWith(
-                fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ),
-        BlocBuilder<UserBloc, UserState>(
-          builder: (_, userState) {
-            if (userState is UserLoaded) {
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(
-                      userState.user.selectedGenres.length,
-                      (index) =>
-                          BrowseButton(userState.user.selectedGenres[index])),
-                ),
-              );
-            } else {
-              return SpinKitFadingCircle(
-                color: mainColor,
-                size: 50,
-              );
-            }
-          },
         ),
 
         // note: COMING SOON
