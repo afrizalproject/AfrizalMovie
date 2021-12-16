@@ -372,7 +372,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     ),
                                     onPressed: () {
                                       if (user.balance >= total) {
-                                        /* FlutixTransaction transaction =
+                                        FlutixTransaction transaction =
                                             FlutixTransaction(
                                                 userID: user.id,
                                                 title: widget
@@ -388,7 +388,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             GoToSuccessPage(
                                                 widget.ticket.copyWith(
                                                     totalPrice: total),
-                                                transaction)); */
+                                                transaction));
                                       } else {
                                         // # Uang tidak cukup
                                       }
