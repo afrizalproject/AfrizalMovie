@@ -193,9 +193,9 @@ class MovieDetailPage extends StatelessWidget {
                               style: whiteTextFont.copyWith(fontSize: 16),
                             ),
                             onPressed: () {
-                              /* context
+                              context
                                   .bloc<PageBloc>()
-                                  .add(GoToSelectSchedulePage(movieDetail)); */
+                                  .add(GoToSelectSchedulePage(movieDetail));
                             }),
                         SizedBox(height: defaultMargin)
                       ],
