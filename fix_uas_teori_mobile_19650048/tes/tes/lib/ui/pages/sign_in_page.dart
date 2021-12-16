@@ -152,9 +152,16 @@ class _SignInPageState extends State<SignInPage> {
                         style:
                             greyTextFont.copyWith(fontWeight: FontWeight.w400),
                       ),
-                      Text(
-                        "Sign Up",
-                        style: purpleTextFont,
+                      GestureDetector(
+                        onTap: () {
+                          context
+                              .bloc<PageBloc>()
+                              .add(GoToRegistrationPage(RegistrationData()));
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: purpleTextFont,
+                        ),
                       )
                     ],
                   )

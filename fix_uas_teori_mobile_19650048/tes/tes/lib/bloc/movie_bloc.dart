@@ -14,7 +14,12 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   Stream<MovieState> mapEventToState(MovieEvent event) async* {
     if (event is FetchMovie) {
       List<Movie> movies = await MovieServices.getMovies(1);
-      yield MovieLoaded(movies: movies);
+      yield MovieLoaded(
+          movies: movies
+              .where((element) =>
+                  !element.title.toLowerCase().contains('365') &&
+                  !element.title.toLowerCase().contains('bois'))
+              .toList());
     }
   }
 }
