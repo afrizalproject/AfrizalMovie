@@ -20,59 +20,41 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    //tambah tabbar
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(color: mainColor),
-                  child: FloatingActionButton(
-                      elevation: 0,
-                      backgroundColor: accentColor2,
-                      child: SizedBox(
-                        height: 26,
-                        width: 26,
-                        child: Icon(
-                          MdiIcons.walletPlus,
-                          color: Colors.black.withOpacity(0.54),
-                        ),
-                      ),
-                      onPressed: () {
-                        context.bloc<UserBloc>().add(SignOut());
-                        AuthServices.signOut();
-                      }),
-                )
-              ],
-            ),
-          ),
-          appBar: AppBar(
-            backgroundColor: accentColor1,
-            bottom: const TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.movie)),
-                Tab(icon: Icon(MdiIcons.ticket)),
-                Tab(icon: Icon(MdiIcons.walletPlus)),
-              ],
-            ),
-            title: Text('AfrizalMovies'),
-          ),
-          body: TabBarView(
-            children: [
-              MoviePage(),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_transit),
+    //AWAS!!! ini navbar
+    return Scaffold(
+        /* appBar: AppBar(
+          backgroundColor: accentColor1,
+          title: const Text('AfrizalMovie'),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(color: mainColor),
+                child: Text(
+                  'Drawer Header',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.message),
+                title: Text('Messages'),
+              ),
+              ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text('Profile'),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+              ),
             ],
           ),
-        ),
-      ),
-    );
-
-    //AWAS!!! ini navbar
-    /* return Scaffold(
+        ), */
         body: Stack(
       children: <Widget>[
         Container(
@@ -90,12 +72,7 @@ class _MainPageState extends State<MainPage> {
               bottomNavBarIndex = index;
             });
           },
-          children: <Widget>[
-            MoviePage(),
-            Center(
-              child: Text("My Tickets"),
-            ),
-          ],
+          children: <Widget>[MoviePage(), TicketPage()],
         ),
         createCustomBottomNavBar(),
         Align(
@@ -121,7 +98,7 @@ class _MainPageState extends State<MainPage> {
                   }),
             )),
       ],
-    )); */
+    ));
   }
 
   Widget createCustomBottomNavBar() => Align(
