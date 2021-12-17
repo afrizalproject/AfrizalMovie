@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     //AWAS!!! ini navbar
     return Scaffold(
-        /* appBar: AppBar(
+        appBar: AppBar(
           backgroundColor: accentColor1,
           title: const Text('AfrizalMovie'),
         ),
@@ -34,78 +34,76 @@ class _MainPageState extends State<MainPage> {
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
-                decoration: BoxDecoration(color: mainColor),
-                child: Text(
-                  'Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
+                  decoration: BoxDecoration(color: accentColor1),
+                  child: Container(child: MainDrawer())),
+              ListTile(
+                leading: Icon(MdiIcons.wallet),
+                title: Text('My Wallet'),
+                onTap: () {
+                  context.bloc<PageBloc>().add(GoToWalletPage(GoToMainPage()));
+                },
               ),
               ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
-              ),
-              ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
+                leading: Icon(MdiIcons.logout),
+                title: Text('Log Out'),
+                onTap: () async {
+                  await AuthServices.signOut();
+                  context.bloc<UserBloc>().add(SignOut());
+                },
               ),
             ],
           ),
-        ), */
+        ),
         body: Stack(
-      children: <Widget>[
-        Container(
-          color: accentColor1,
-        ),
-        SafeArea(
-          child: Container(
-            color: Color(0xFFF6F7F9),
-          ),
-        ),
-        PageView(
-          controller: pageController,
-          onPageChanged: (index) {
-            setState(() {
-              bottomNavBarIndex = index;
-            });
-          },
           children: <Widget>[
-            MoviePage(),
-            TicketPage(
-              isExpiredTicket: widget.isExpired,
-            )
+            Container(
+              color: accentColor1,
+            ),
+            SafeArea(
+              child: Container(
+                color: Color(0xFFF6F7F9),
+              ),
+            ),
+            PageView(
+              controller: pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  bottomNavBarIndex = index;
+                });
+              },
+              children: <Widget>[
+                MoviePage(),
+                TicketPage(
+                  isExpiredTicket: widget.isExpired,
+                )
+              ],
+            ),
+            createCustomBottomNavBar(),
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 46,
+                  width: 46,
+                  margin: EdgeInsets.only(bottom: 42),
+                  child: FloatingActionButton(
+                      elevation: 0,
+                      backgroundColor: accentColor2,
+                      child: SizedBox(
+                        height: 26,
+                        width: 26,
+                        child: Icon(
+                          MdiIcons.walletPlus,
+                          color: Colors.black.withOpacity(0.54),
+                        ),
+                      ),
+                      onPressed: () {
+                        context
+                            .bloc<PageBloc>()
+                            .add(GoToTopUpPage(GoToMainPage()));
+                      }),
+                )),
           ],
-        ),
-        createCustomBottomNavBar(),
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 46,
-              width: 46,
-              margin: EdgeInsets.only(bottom: 42),
-              child: FloatingActionButton(
-                  elevation: 0,
-                  backgroundColor: accentColor2,
-                  child: SizedBox(
-                    height: 26,
-                    width: 26,
-                    child: Icon(
-                      MdiIcons.walletPlus,
-                      color: Colors.black.withOpacity(0.54),
-                    ),
-                  ),
-                  onPressed: () {
-                    context.bloc<PageBloc>().add(GoToTopUpPage(GoToMainPage()));
-                  }),
-            )),
-      ],
-    ));
+        ));
   }
 
   Widget createCustomBottomNavBar() => Align(
@@ -178,4 +176,30 @@ class BottomNavBarClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+class MainDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          child: Padding(
+            padding: EdgeInsets.only(top: 0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                    radius: 45,
+                    backgroundImage: AssetImage("assets/user_pic.png")),
+                SizedBox(height: 12),
+                Text("Afrizal", style: whiteTextFont),
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
 }

@@ -123,9 +123,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          /*  context
+                          context
                               .bloc<PageBloc>()
-                              .add(GoToWalletPage(GoToProfilePage())); */
+                              .add(GoToWalletPage(GoToProfilePage()));
                         },
                         child: Row(
                           children: <Widget>[
